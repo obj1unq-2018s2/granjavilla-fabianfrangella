@@ -1,0 +1,19 @@
+import wollok.game.*
+import hector.*
+import plantas.*
+
+program farmville {
+	game.title("Farmville")
+	game.height(10)
+	game.width(10)
+	game.ground("ground.png")
+		// Personaje
+	game.addVisualCharacter(hector)
+		// Controles	
+	keyboard.m().onPressDo{ hector.sembrar(new Maiz()) }
+	keyboard.t().onPressDo{ hector.sembrar(new Trigo()) }
+	keyboard.o().onPressDo{ hector.sembrar(new Tomaco()) }
+	keyboard.r().onPressDo{ hector.regar(game.colliders(hector).first()) }
+		// Start
+	game.start()
+}
