@@ -7,13 +7,15 @@ program farmville {
 	game.height(10)
 	game.width(10)
 	game.ground("ground.png")
-		// Personaje
+	// Personaje
 	game.addVisualCharacter(hector)
-		// Controles	
+	// Controles	
 	keyboard.m().onPressDo{ hector.sembrar(new Maiz()) }
 	keyboard.t().onPressDo{ hector.sembrar(new Trigo()) }
 	keyboard.o().onPressDo{ hector.sembrar(new Tomaco()) }
 	keyboard.r().onPressDo{ hector.regar(game.colliders(hector).first()) }
-		// Start
+	keyboard.c().onPressDo{ hector.cosechar(game.colliders(hector).first()) }
+	keyboard.v().onPressDo{ hector.vender()}
+	// Start
 	game.start()
 }

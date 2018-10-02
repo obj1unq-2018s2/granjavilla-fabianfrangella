@@ -4,6 +4,7 @@ class Maiz {
 	var property estado = 0
 	const property estados = [ "corn_baby.png", "corn_adult.png" ]
 	var property imagen = estados.first()
+	const property precio = 150
 
 	method teSembraron(alguien) {
 		imagen = estados.first()
@@ -15,23 +16,34 @@ class Maiz {
 		imagen = estados.get(estado)
 	}
 
+	method teCosecharon() {
+		game.removeVisual(self)
+	}
+
 }
 
 class Trigo {
 
 	var property posicion
-	var property estados = [ "wheat_0.png", "wheat_1.png", "wheat_2.png", "what_3.png" ]
 	var property estado = 0
-	var property imagen = estados.first()
+	var property precio 
+	var property imagen
 
 	method teSembraron(alguien) {
-		imagen = estados.first()
+		imagen = "wheat_" + estado.toString() + ".png"
 		posicion = alguien.posicion().clone()
 	}
 
 	method teRegaron() {
-		estado = if (estado >= estados.size() - 1) 0 else +1
-		imagen = estados.get(estado)
+		estado = (estado + 1) % 4
+		imagen = "wheat_" + estado.toString() + ".png"
+		precio = (estado - 1) * 100
+	}
+
+	method teCosecharon() {
+		if (estado > 1) {
+			game.removeVisual(self)
+		}
 	}
 
 }
@@ -39,17 +51,19 @@ class Trigo {
 class Tomaco {
 
 	var property posicion
-	var property estado = 0
-	var property estados = []
-	var property imagen = estados.first()
+	const property imagen = "tomaco.png"
+	const property precio = 80
 
 	method teSembraron(alguien) {
-		imagen = estados.first()
 		posicion = alguien.posicion().clone()
 	}
 
 	method teRegaron() {
-		
+		posicion = posicion.up(1)
+	}
+
+	method teCosecharon() {
+		game.removeVisual(self)
 	}
 
 }
