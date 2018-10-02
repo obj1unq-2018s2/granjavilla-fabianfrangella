@@ -26,7 +26,7 @@ class Trigo {
 
 	var property posicion
 	var property estado = 0
-	var property precio 
+	var property precio
 	var property imagen
 
 	method teSembraron(alguien) {
@@ -59,7 +59,11 @@ class Tomaco {
 	}
 
 	method teRegaron() {
-		posicion = posicion.up(1)
+		if (posicion.y() < 9) {
+			posicion = posicion.up(1)
+		} else {
+			posicion = posicion.down(9)
+		}
 	}
 
 	method teCosecharon() {

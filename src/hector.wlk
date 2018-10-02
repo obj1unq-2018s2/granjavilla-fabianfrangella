@@ -12,15 +12,13 @@ object hector {
 		}
 	}
 
-	method puedeRegar(cantidad) {
-		if (cantidad <= 0) {
-			throw new Exception ("No tengo nada para regar :(")
-		}
-	}
-
 	method regar(plant) {
-		self.puedeRegar(game.colliders(self).size())
-		plant.teRegaron()
+		if (!game.colliders(self).isEmpty()){
+			plant.teRegaron()		
+			} else {
+				throw new Exception ( "no tengo nada para regar ")
+			}
+
 	}
 
 	method cosechar(plant) {
